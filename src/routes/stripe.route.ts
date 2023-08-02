@@ -7,7 +7,7 @@ router.route("/stripe/:api_key")
 .get((req: Request, res: Response)=>{
     const {api_key} = req.params;
 
-    new StripeController(api_key).getProduct(req, res);
+    new StripeController(req, res, api_key).getProduct();
 })
 
 .post()

@@ -9,7 +9,7 @@ const router = (0, express_1.Router)();
 router.route("/stripe/:api_key")
     .get((req, res) => {
     const { api_key } = req.params;
-    new stripe_controllers_1.default(api_key).getProduct(req, res);
+    new stripe_controllers_1.default(req, res, api_key).getProduct();
 })
     .post();
 module.exports = router;

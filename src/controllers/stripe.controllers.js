@@ -14,15 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const stripe_1 = __importDefault(require("stripe"));
 class StripeController {
-    constructor(api_key) {
-        this.getProduct = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    constructor(req, res, api_key) {
+        this.getProduct = () => __awaiter(this, void 0, void 0, function* () {
             const prices = (yield this.strp.prices.list()).data;
-            res.status(200).json(prices);
+            this.res.status(200).json(prices);
         });
         this.api_key_stripe = api_key;
         this.strp = new stripe_1.default(this.api_key_stripe, {
             apiVersion: '2022-11-15'
         });
+        this.req = req,
+            this.res = res;
     }
 }
 exports.default = StripeController;
