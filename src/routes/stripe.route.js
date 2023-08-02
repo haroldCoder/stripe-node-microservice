@@ -12,3 +12,4 @@ router.route("/stripe/:api_key")
     new stripe_controllers_1.default(api_key).getProduct(req, res);
 })
     .post();
+module.exports = router;
