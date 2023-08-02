@@ -14,7 +14,7 @@ class StripeController{
 
     getProduct = async(req: Request, res: Response) =>{
         const prices = (await this.strp.prices.list()).data
-        return prices
+        res.status(200).json(prices)
     }
 }
 

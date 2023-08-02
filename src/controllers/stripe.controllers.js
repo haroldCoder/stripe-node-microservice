@@ -17,7 +17,7 @@ class StripeController {
     constructor(api_key) {
         this.getProduct = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const prices = (yield this.strp.prices.list()).data;
-            return prices;
+            res.status(200).json(prices);
         });
         this.api_key_stripe = api_key;
         this.strp = new stripe_1.default(this.api_key_stripe, {
