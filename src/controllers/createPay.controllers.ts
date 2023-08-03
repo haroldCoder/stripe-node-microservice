@@ -15,8 +15,8 @@ class CreatePayController extends StripeController{
     succes_url: string
     cancel_url: string
 
-    constructor(success_url: string, cancel_url: string, api_key_stripe: string ){
-        super(request, response, api_key_stripe);
+    constructor(req: Request | any, res: Response | any, success_url: string, cancel_url: string, api_key_stripe: string ){
+        super(req, res, api_key_stripe);
         this.api_key_stripe = api_key_stripe;
         this.succes_url = success_url;
         this.cancel_url = cancel_url;
@@ -34,15 +34,20 @@ class CreatePayController extends StripeController{
                     payment_method_types: ['card'],
                     line_items: [
                         {
-                            quantity: quantity,
-                            amount: price,
-                            name: name,
-                            currency: currency
-                        } as LineItem
+                            price_data: {
+                                currency: currency,
+                                product_data:{
+                                    name: name!,
+                                    description: name!
+                                },
+                                unit_amount: price! * 100
+                            },
+                            quantity: quantity
+                        }
                     ]
                 })
-
-                this.res.status(200).send(this.session.url);
+                
+                this.res.status(200).json(this.session.url);
                 break;
             case "subscription":
                 this.session = await this.strp.checkout.sessions.create({

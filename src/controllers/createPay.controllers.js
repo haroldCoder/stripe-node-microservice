@@ -12,11 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
 const stripe_controllers_1 = __importDefault(require("./stripe.controllers"));
 class CreatePayController extends stripe_controllers_1.default {
-    constructor(success_url, cancel_url, api_key_stripe) {
-        super(express_1.request, express_1.response, api_key_stripe);
+    constructor(req, res, success_url, cancel_url, api_key_stripe) {
+        super(req, res, api_key_stripe);
         this.createPay = (mode, price, quantity, currency = 'USD', name, priceid) => __awaiter(this, void 0, void 0, function* () {
             switch (mode) {
                 case "payment":
@@ -27,14 +26,19 @@ class CreatePayController extends stripe_controllers_1.default {
                         payment_method_types: ['card'],
                         line_items: [
                             {
-                                quantity: quantity,
-                                amount: price,
-                                name: name,
-                                currency: currency
+                                price_data: {
+                                    currency: currency,
+                                    product_data: {
+                                        name: name,
+                                        description: name
+                                    },
+                                    unit_amount: price * 100
+                                },
+                                quantity: quantity
                             }
                         ]
                     });
-                    this.res.status(200).send(this.session.url);
+                    this.res.status(200).json(this.session.url);
                     break;
                 case "subscription":
                     this.session = yield this.strp.checkout.sessions.create({
