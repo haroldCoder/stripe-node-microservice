@@ -13,7 +13,8 @@ interface StripeData {
     price: number,
     quantity: number,
     currency: string,
-    name: string
+    name: string,
+    priceId: string
 }
 
 router.route("/stripe/:api_key")
@@ -25,9 +26,9 @@ router.route("/stripe/:api_key")
 
 router.route("/stripe")
     .post((req: Request, res: Response) => {
-        const { success_url, cancel_url, api_key_stripe, mode, price, quantity, currency, name }: StripeData = req.body;
+        const { success_url, cancel_url, api_key_stripe, mode, price, quantity, currency, name, priceId }: StripeData = req.body;
 
-        new CreatePayController(req, res, success_url, cancel_url, api_key_stripe).createPay(mode, price, quantity, currency, name)
+        new CreatePayController(req, res, success_url, cancel_url, api_key_stripe).createPay(mode, price, quantity, currency, name, priceId)
     })
 
 module.exports = router;
