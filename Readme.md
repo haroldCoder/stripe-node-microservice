@@ -30,10 +30,12 @@ This is the route where you can generate a stripe payment link, either in your a
 **quantity: ** is the amount that you will buy of that product
 **currency: ** is the currency you allow to pay for the product, for default is USD
 **name: ** is the name of product
+**priceId:** It is used to pass the id of a specific product from your stripe panel 
 
 ## Example
 
-POST htt://localhost:3000/api/stripe
+## POST htt://localhost:3000/api/stripe
+
 JSON {
   api_key: <your api key>
   mode: "payment"
@@ -42,3 +44,7 @@ JSON {
   currency: "usd"
   name: "xbox series x"
 }
+
+## Note
+
+### **success_url and cancel_url, are they a paramethers requireds, therefore when build a petiition you must enter it. if what you want to do is a suscription, with priceId know the system what product is**
