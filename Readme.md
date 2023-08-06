@@ -38,10 +38,10 @@ This is the route where you can generate a stripe payment link, either in your a
 
 JSON {
   api_key: <your api key>
-  mode: "payment"
-  price: 1800
-  quantity: 2
-  currency: "usd"
+  mode: "payment",
+  price: 1800,
+  quantity: 2,
+  currency: "usd",
   name: "xbox series x"
 }
 
