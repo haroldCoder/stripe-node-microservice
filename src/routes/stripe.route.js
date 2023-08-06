@@ -14,7 +14,7 @@ router.route("/stripe/:api_key")
 });
 router.route("/stripe")
     .post((req, res) => {
-    const { success_url, cancel_url, api_key_stripe, mode, price, quantity, currency, name } = req.body;
-    new createPay_controllers_1.default(req, res, success_url, cancel_url, api_key_stripe).createPay(mode, price, quantity, currency, name);
+    const { success_url, cancel_url, api_key_stripe, mode, price, quantity, currency, name, priceId } = req.body;
+    new createPay_controllers_1.default(req, res, success_url, cancel_url, api_key_stripe).createPay(mode, price, quantity, currency, name, priceId);
 });
 module.exports = router;
