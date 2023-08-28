@@ -22,7 +22,7 @@ This is the main route, where you can access fixed products in your stripe accou
 
 This is the route where you can generate a stripe payment link, either in your application, or you can do it easily with tools like postman, just enter your api credential, the product data, where you want it to be redirected, when you make the payment, or where in case of canceling it, among others.
 
-* **api key:** is the key, either public or private of your stripe. You can find it here https://dashboard.stripe.com/test/apikeys
+* **api_key_stripe:** is the key, either public or private of your stripe. You can find it here https://dashboard.stripe.com/test/apikeys
 * **success_url:** It is the url where you want to be redirected after making the payment
 * **cancel_url:** is the url where you want to be redirected, if the user regrets making the payment
 * **mode:** It is the modality in which you want the customer to pay, either for a subscription to your personalized products or for any other product. there are only two values "subscription: " or "payment"
@@ -36,7 +36,7 @@ This is the route where you can generate a stripe payment link, either in your a
 ## POST htt://localhost:3000/api/stripe
 
 JSON {
-  api_key: "your api key",
+  api_key_stripe: "your api key",
   mode: "payment",
   price: 1800,
   quantity: 2,
