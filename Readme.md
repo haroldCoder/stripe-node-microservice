@@ -36,7 +36,7 @@ This is the route where you can generate a stripe payment link, either in your a
 ## POST htt://localhost:3000/api/stripe
 
 JSON {
-  api_key: <your api key>
+  api_key: "your api key",
   mode: "payment",
   price: 1800,
   quantity: 2,
