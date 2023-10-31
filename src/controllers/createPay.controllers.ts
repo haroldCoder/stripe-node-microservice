@@ -29,7 +29,7 @@ class CreatePayController extends StripeController{
             case "payment":
                 this.session = await this.strp.checkout.sessions.create({
                     mode: mode,
-                    success_url: this.cancel_url,
+                    success_url: this.succes_url,
                     cancel_url: this.cancel_url,
                     payment_method_types: ['card'],
                     line_items: [
